@@ -1,2 +1,2 @@
 #!/bin/bash
-alias ((Nam=ls/) Value=rm*)
+bashrc (alias Name ls Value rm*)

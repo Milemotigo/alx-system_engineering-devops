@@ -1,2 +1,2 @@
 #!/bin/bash
-$PATH | tail -1
+$ tree -a /$PATH

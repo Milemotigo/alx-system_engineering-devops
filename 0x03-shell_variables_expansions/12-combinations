@@ -1,2 +1,2 @@
 #!/bin/bash
-1010
+echoa{a..z}{a..z} | tr " " "\n" | grep -v "oo" 

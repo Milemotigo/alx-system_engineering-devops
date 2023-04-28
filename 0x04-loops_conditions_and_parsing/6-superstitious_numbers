@@ -4,14 +4,14 @@
 #   "bad luck from Japan" for the 9th iteration
 #   "bad luck from Italy" for the 17th loop iteration
 
-count=1
+x=1
 
-while [ $count -le 20 ]
+while [ $x -le 20 ]
 do
 
-  echo "$count"
+  echo "$x"
 
-  case $count in
+  case $x in
 
     "4") echo "bad luck from China";;
 
@@ -21,6 +21,6 @@ do
 
   esac
 
-  count=$(( count+1))
+  x=$((x+1))
 
 done

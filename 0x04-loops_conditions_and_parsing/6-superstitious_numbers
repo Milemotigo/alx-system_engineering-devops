@@ -3,7 +3,7 @@
 
 count=1
 
-while (($count <= 20))
+while [ $count -lt 21 ];
 do
 	case $count in
 		4)

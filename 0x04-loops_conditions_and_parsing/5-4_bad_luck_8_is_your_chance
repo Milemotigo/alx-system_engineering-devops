@@ -5,7 +5,7 @@ i=0
 
 while ((i < 10))
 do
-	if ((i == 4))
+	if ((i == 3))
 		then
 			echo "good luck"
 		elif((i == 8))

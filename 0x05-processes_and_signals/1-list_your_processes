@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# a script that displays a list of current running process
+
+ps auxf | less
+pstree -p

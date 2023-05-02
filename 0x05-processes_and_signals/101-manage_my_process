@@ -28,7 +28,7 @@ stop()
 {
 	./manage_my_process &
     	echo "Stopping manage_my_process..."
-    	kill $(cat /var/run/my_process.pid)
+    	kill "$(cat /var/run/my_process.pid)"
     	rm /var/run/my_process.pid
     	echo "manage_my_process stopped."
 }

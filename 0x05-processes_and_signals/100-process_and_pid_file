@@ -1,23 +1,35 @@
 #!/usr/bin/env bash
-# a bash script that creates the file /var/run/myscript.
+# Does the following:
+#   Create a file /var/run/myscript.pid containing the script PID.
+#   Displays "To infinity and beyond" indefinitely
+#   Displays "I hate the kill command" upon receiving a SIGTERM
+#   Displays "Y U no love me?!" upon receiving a SIGINT
+#   Deletes the file /var/run/myscript.pid and terminates upon
+#+  receiving a SIGQUIT or SIGTERM.
 
-should_continue=true
+terminator() {
 
-cleanup()
-{
-        echo "cleaning up and terminating the process..."
-        kill -QUIT "$pid"
-        rm -f /var/run/myscript.pid
+  rm -f /var/run/myscript.pid
+
+  exit
+
 }
-trap cleanup SIGQUIT SIGINT
-trap 'touch /var/run/myscript.pid' EXIT
-trap 'echo "I hate the kill command" SIGTERM' SIGTERM
 
-while $should_continue
+
+
+echo "$$" > /var/run/myscript.pid
+
+trap 'terminator' SIGQUIT
+
+trap 'echo "I hate the kill command" && terminator' SIGTERM
+
+trap 'echo "Y U no love me?!"' SIGINT
+while true
+
 do
-        echo "To infinity and beyond"
-done
 
-# Start a long-running process in the background
-some_long_running_process & pid=$!
-wait "$pid"
+  echo "To infinity and beyond"
+
+  sleep 2
+
+done

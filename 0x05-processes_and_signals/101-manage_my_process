@@ -17,19 +17,20 @@
 
 start()
 {
-    echo "Starting manage_my_process..."
-    ./manage_my_process &
-    echo $! > /var/run/my_process.pid
-    echo "manage_my_process started."
+	./manage_my_process &
+	touch /var/run/my_process.pid
+	echo "Starting manage_my_process..."
+	echo $! > /var/run/my_process.pid
+    	echo "manage_my_process started."
 }
 
 stop()
 {
-    echo "Stopping manage_my_process..."
-    ./manage_my_process &
-    kill $(cat /var/run/my_process.pid)
-    rm /var/run/my_process.pid
-    echo "manage_my_process stopped."
+	./manage_my_process &
+    	echo "Stopping manage_my_process..."
+    	kill $(cat /var/run/my_process.pid)
+    	rm /var/run/my_process.pid
+    	echo "manage_my_process stopped."
 }
 
 case "$1" in

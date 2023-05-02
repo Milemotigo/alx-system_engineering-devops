@@ -15,27 +15,34 @@
 #	Creates a file containing its PID in /var/run/my_process.pid
 #	Displays manage_my_process restarted
 
-start()
-{
-	./manage_my_process &
-	touch /var/run/my_process.pid
-	echo "Starting manage_my_process..."
-	echo $! > /var/run/my_process.pid
-    	echo "manage_my_process started."
-}
 
-stop()
-{
-	./manage_my_process &
-    	echo "Stopping manage_my_process..."
-    	kill "$(cat /var/run/my_process.pid)"
-    	rm /var/run/my_process.pid
-    	echo "manage_my_process stopped."
-}
+if [ "${1}" == "start" ]
 
-restart()
-{
-	kill "$(cat /var/run/my_process.pid)"
+then
+
+    ./manage_my_process &
+
+    touch /var/run/my_process.pid
+
+    echo "$!" > /var/run/my_process.pid
+
+    echo "manage_my_process started"
+
+elif [ "${1}" == "stop" ]
+
+then
+
+    echo "manage_my_process stopped"
+
+    kill "$(cat /var/run/my_process.pid)"
+
+    rm /var/run/my_process.pid
+
+elif [ "${1}" == "restart" ]
+
+then
+
+    kill "$(cat /var/run/my_process.pid)"
 
     rm /var/run/my_process.pid
 
@@ -46,21 +53,9 @@ restart()
     echo "$!" > /var/run/my_process.pid
 
     echo "manage_my_process restarted"
-}
-case "$1" in
-	start)
-		start
-		;;
-	stop)
-		stop
-		;;
-	restart)
-	        restart
-	        ;;
-        *)
-		echo "Usage: $0 {start|stop|restart}"
-		exit 1
-		;;
-esac
 
-exit 0
+else
+
+    echo "Usage: manage_my_process {start|stop|restart}"
+
+fi

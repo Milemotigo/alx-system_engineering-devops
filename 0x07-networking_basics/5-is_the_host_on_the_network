@@ -10,6 +10,6 @@ case "$#" in
 		;;
 	*)
 
-		ping -c 5 $ip_address
+		ping -c 5 "$ip_address"
 		;;
 esac

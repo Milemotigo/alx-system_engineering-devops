@@ -2,4 +2,14 @@
 #  a Bash script that pings an IP address passed as an argument.
 
 ip_address=$1
-ping -c 5 $ip_address
+
+case "$#" in
+	0)
+
+		echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+		;;
+	*)
+
+		ping -c 5 $ip_address
+		;;
+esac

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Listen to incoming connections on port 98 (local host)
+
+nc -l 127.0.0.1 98

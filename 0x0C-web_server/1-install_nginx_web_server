@@ -6,5 +6,6 @@
 
 sudo apt-get -y update
 sudo apt-get install -y nginx
-echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo apt-get install curl
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
 sudo service nginx restart

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#Install nginx web server
+
+sudo apt-get update
+sudo apt-get install nginx -y
+sudo printf "Hello World!" > /var/www/html/index.html
+sudo service nginx restart

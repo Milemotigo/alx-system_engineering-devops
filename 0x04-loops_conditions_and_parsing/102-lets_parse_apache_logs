@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+<<<<<<< HEAD
+# Write a Bash script that displays the visitor IP along with the HTTP status code from the Apache log file.
+
+awk '{print f1, f9}'  apache-access.log file
+=======
+
+# Use awk to extract the IP and HTTP status code from the log file
+awk '{print $1, $9}' apache-access.log file
+>>>>>>> 4c64003 (commit)

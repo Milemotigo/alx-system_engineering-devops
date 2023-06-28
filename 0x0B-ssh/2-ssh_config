@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#AuthorizedKeysFile     %h/.ssh/authorized_keys
+Host school
+    IdentityFile ~/.ssh/school
+    User ubuntu
+# Change to no to disable tunnelled clear text passwords
+PasswordAuthentication no

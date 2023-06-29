@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Add the redirect configuration to the Nginx default site configuration
+
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo service nginx start
+
+redirect_config="rewrite ^/redirect_me https://www.youtube.com/watch?v=MjoP9GWgxe0&t=1592s permanent;"
+sudo sed -i "/^\s*server_name _;/a $redirect_config" /etc/nginx/sites-available/default
+
+sudo service nginx restart
+sudo service nginx reload

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Add the redirect configuration to the Nginx default site configuration
+
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo service nginx start
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+redirect_config="location = /redirect_me {\n\treturn 301 https://example.com/another_page;\n}"
+sudo sed -i "/^\s*server_name _;/a $redirect_config" /etc/nginx/sites-available/default
+
+sudo service nginx restart
+sudo service nginx reload

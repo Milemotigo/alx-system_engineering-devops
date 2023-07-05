@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Auto-onfiguring Nginx so that its HTTP response contains a custom header and a helloworld default text after intallation on thw 2nd web server
-
+# Auto-configuring Nginx so that its HTTP response contains a custom header and a hello world default text after intallation on 2nd machine
 sudo apt -y update
 #sudo apt -y upgrade
 

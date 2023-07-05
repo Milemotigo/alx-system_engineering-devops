@@ -17,6 +17,5 @@ backend web_servers
         server 222472-web-01 54.197.44.197:80 check
         server 222472-web-02 34.234.201.140:80 check" | sudo tee -a /etc/haproxy/haproxy.cfg
 
-
 sudo service haproxy start
 sudo service haproxy restart

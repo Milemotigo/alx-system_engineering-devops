@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Auto-onfiguring Nginx so that its HTTP response contains a custom header and a helloworld default text after intallation on thw 2nd web server
+
+sudo apt -y update
+#sudo apt -y upgrade
+
+sudo apt install -y nginx
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo sed -i "12i\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
+sudo service nginx start
+
+sudo ufw allow "Nginx HTTP"
+sudo ufw enable
+
+sudo service nginx restart

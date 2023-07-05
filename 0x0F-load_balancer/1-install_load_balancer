@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# HAproxy load balancer configurations for my 2 webservers
+
+sudo echo "
+ENABLE=1" | sudo tee -a /etc/default/haproxy
+# configurations
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.originalbak
+
+echo "
+frontend 222472-lb-01
+        mode http
+        bind *:80
+        default_backend web_servers
+
+backend web_servers
+        balance roundrobin
+        server 222472-web-01 54.197.44.197:80 check
+        server 222472-web-02 34.234.201.140:80 check" | sudo tee -a /etc/haproxy/haproxy.cfg
+
+#sudo chmod 777 /etc/haproxy/haproxy.cfg
+
+sudo service haproxy start
+sudo service haproxy restart

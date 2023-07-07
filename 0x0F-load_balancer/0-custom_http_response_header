@@ -2,8 +2,8 @@
 # Auto-configuring Nginx so that its HTTP response contains a custom header and a hello world default text after installation on web-01 and web-02
 
 # Update system packages
-sudo apt -y update
-#sudo apt -y upgrade
+sudo apt update
+sudo apt upgrade
 
 # Install Nginx
 sudo apt install -y nginx
@@ -11,10 +11,11 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 
 sudo sed -i "12i\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
 
-# Start Nginx service
+#Start Nginx service
 sudo service nginx start
 
 # Enable Nginx through the firewall
+sudo apt install ufw
 sudo ufw allow "Nginx HTTP"
 sudo ufw enable
 

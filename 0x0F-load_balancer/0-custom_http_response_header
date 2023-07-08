@@ -17,6 +17,7 @@ sudo service nginx start
 
 # Enable Nginx through the firewall
 #sudo apt install ufw
+sudo ufw allow openSSH
 sudo ufw allow "Nginx HTTP"
 sudo ufw enable
 

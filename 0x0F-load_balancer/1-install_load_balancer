@@ -1,46 +1,20 @@
 #!/usr/bin/env bash
-# HAproxy load balancer configurations for my 2 webservers
+# HAproxy load balancer configurations for webserver1 and webservers2
 
-#!/usr/bin/env bash
+sudo apt-get update
+sudo apt-get install -y haproxy
 
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-1.8
-apt-get update
-apt-get install -y haproxy=1.8.\*
+sudo chown $USER:$USER /etc/haproxy/haproxy.cfg
 
-echo "ENABLED=1" >> /etc/default/haproxy
-mv /etc/haproxy/haproxy.cfg{,.original}
-touch /etc/haproxy/haproxy.cfg
+echo "
+frontend lbserver
+	bind *:80
+	mode http
+	default_backend webserver
+backend webserver
+	balance roundrobin
+	server 218165-web-01 3.83.18.183:80 check
+	server 218165-web-02 34.232.76.216:80 check" >> /etc/haproxy/haproxy.cfg
 
-cat <<EOF > /etc/haproxy/haproxy.cfg
-global
-    log 127.0.0.1 local0 notice
-    maxconn 2000
-    user haproxy
-    group haproxy
-
-defaults
-    log     global
-    mode    http
-    option  httplog
-    option  dontlognull
-    retries 3
-    option redispatch
-    timeout connect  5000
-    timeout client  10000
-    timeout server  10000
-
-listen hbnb
-    bind 0.0.0.0:80
-    mode http
-    stats enable
-    stats uri /haproxy?stats
-    balance roundrobin
-    option httpclose
-    option forwardfor
-    server 59637-web-01 3.83.18.183:80 check
-    server 59637-web-02 54.157.147.102:80 check
-EOF
-
-service haproxy start
-
+sudo service haproxy start
+sudo service haproxy restart

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# write a Bash script with the minimum number of commands to automate your code to listen a port 80
 
-sudo sed -i "s/listen\s*8080;/listen 80;/"  etc/nginx/sites-available/default
+# debugging nginx not starting
+# reconfiguring to default to listen to port 80, and not 8080
+
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart

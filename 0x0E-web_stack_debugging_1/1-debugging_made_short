@@ -2,5 +2,7 @@
 # write a Bash script with the minimum number of commands to automate your code to listen a port 80
 
 sudo sed -i "s/8080/80/"  etc/nginx/sites-enabled/default
+
 service nginx restart
-truncate -s 0 /run/nginx.pid
+
+echo "" | sudo tee /run/nginx.pid

@@ -1,22 +1,22 @@
 #!/bin/bash
 # write a Bash script that will display information about subdomain 
 
-track_record_info() {
-	local domain="$1"
-	local subdomain="$2"
+display_domain_info() {
+	# funtion that show information about a particular subdomain
 	
-	if [ -z "$subdomain" ]; then
-		subdomains=("www" "lb-01" "web-01" "web-02")
-	else
-		subdomains=("$subdomain")
-	fi
+	domain="$1"
+	subdomain="$2"
+	hostname="$subdomain.$domain"
+	record_type=$(dig "$hostname" | grep -A1 'ANSWER SECTION:' | tail -1 | awk '{print $4}')
+	destination=$(dig "$hostname" | grep -A1 'ANSWER SECTION:' | tail -1 | awk '{print $5}')
 	
-	for sub in "${subdomains[@]}"; do
-		record_type=$(dig +short "$sub.$domain" | awk '{print $4}')
-		destination=$(dig +short "$sub.$domain" | awk '{print $1}')
-		
-		echo "The subdomain $sub is a $record_type record and points to $destination"
-	done
+	echo "The subdomain $subdomain is a $record_type record and points to $destination"
 }
-track_record_info "$1" "$2"
-
+if [ $# -eq 1 ]; then
+	subdomains=( "www" "lb-01" "web-01" "web-02" )
+	for sub in "${subdomains[@]}"; do
+		domain_info "$1" "$sub"
+	done
+elif [ $# -eq 2 ]; then
+	display_domain_info "$1" "$2"
+fi

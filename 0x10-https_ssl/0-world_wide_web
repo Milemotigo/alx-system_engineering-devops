@@ -2,7 +2,7 @@
 # write a Bash script that will display information about subdomain 
 
 display_domain_info() {
-	# funtion that show information about a particular subdomain
+	#funtion that show information about a particular subdomain
 	
 	domain="$1"
 	subdomain="$2"

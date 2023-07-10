@@ -1,5 +1,5 @@
 #!/bin/bash
-# write a Bash script that will display information about subdomains
+# write a Bash script that will display information about subdomain 
 
 track_record_info() {
 	local domain="$1"

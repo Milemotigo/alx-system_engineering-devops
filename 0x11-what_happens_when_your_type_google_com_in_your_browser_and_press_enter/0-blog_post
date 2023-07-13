@@ -1,0 +1,43 @@
+What Happens When You Type "https://www.google.com" in Your Browser and Press Enter?
+
+Introduction:
+
+Have you ever wondered about the magic that happens when you type "https://www.google.com" in your browser's address bar and hit Enter? In this beginner-friendly blog post, we'll unravel the fascinating journey that takes place behind the scenes. From DNS requests to web servers and databases, we'll explore the essential components and processes involved in bringing the Google search page to your screen. Let's dive in!
+
+DNS Request: Resolving the Domain Name
+
+As soon as you enter "https://www.google.com" in your browser, the first step is the DNS request. Your browser sends a request to a Domain Name System (DNS) server to translate the human-readable domain name "www.google.com" into its corresponding IP address. The DNS server locates the IP address associated with "www.google.com" and returns it to your browser.
+
+TCP/IP: Establishing a Connection
+
+With the IP address in hand, your browser initiates a connection using the TCP/IP (Transmission Control Protocol/Internet Protocol) suite. TCP ensures reliable communication between your computer and the server, while IP handles addressing and routing of data packets over the Internet. This connection enables the seamless flow of data between your browser and the server.
+
+Firewall: Protecting Against Unauthorized Access
+
+During the connection establishment, your data passes through a firewall. A firewall acts as a security barrier, monitoring incoming and outgoing network traffic. It filters and blocks any potentially malicious data, protecting your computer from unauthorized access and ensuring a safe browsing experience.
+
+HTTPS/SSL: Secure Communication
+
+Once the connection is established, the browser and the server initiate a handshake to establish a secure connection using HTTPS (Hypertext Transfer Protocol Secure). HTTPS employs SSL (Secure Sockets Layer) or its successor TLS (Transport Layer Security) to encrypt the data transmitted between your browser and the server. This encryption ensures that your information remains private and secure from eavesdroppers.
+
+Load-Balancer: Distributing the Load
+
+To handle the immense traffic and ensure optimal performance, large-scale websites like Google employ load balancers. Load balancers distribute incoming requests across multiple web servers, evenly distributing the workload. This helps maintain responsiveness and prevents any single server from becoming overwhelmed.
+
+Web Server: Serving Web Pages
+
+Behind the scenes, web servers receive your request and deliver the web page you requested. In Google's case, the web server processes your request and retrieves the necessary files, including HTML, CSS, JavaScript, and other resources. It assembles these files and generates the Google search page you see.
+
+Application Server: Handling Dynamic Content
+
+While web servers handle static files, dynamic websites like Google require additional processing. Application servers come into play, executing server-side scripts and generating dynamic content. In Google's case, these application servers process your search query, run complex algorithms, and generate the search results in real-time.
+
+Database: Storing and Retrieving Data
+
+To provide accurate search results, Google relies on extensive databases. These databases store vast amounts of indexed web pages, cached data, and user preferences. The application servers interact with the databases, retrieving relevant information based on your search query and generating the final search results.
+
+Conclusion:
+
+The journey from typing "https://www.google.com" in your browser to seeing the Google search page involves a multitude of components and processes working together seamlessly. DNS requests resolve the domain name, TCP/IP establishes a connection, firewalls protect against threats, HTTPS/SSL ensures secure communication, load balancers distribute the workload, web servers serve web pages, application servers handle dynamic content, and databases store and retrieve data.
+
+Next time you search on Google or browse any other website, you can appreciate the intricacies and technologies at play behind the scenes. The harmonious collaboration of these components and processes ensures a smooth and secure browsing experience for users worldwide.

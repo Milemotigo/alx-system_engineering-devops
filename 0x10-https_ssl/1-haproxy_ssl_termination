@@ -1,4 +1,5 @@
-global
+
+bal
 	log /dev/log	local0
 	log /dev/log	local1 notice
 	chroot /var/lib/haproxy
@@ -7,8 +8,6 @@ global
 	user haproxy
 	group haproxy
 	daemon
-
-	lua-load    /etc/haproxy/acme-http01-webroot.lua
 
 	# Default SSL material locations
 	ca-base /etc/ssl/certs
@@ -35,20 +34,17 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend loadb
-	bind *:80
-	bind *:443 ssl crt /etc/letsencrypt/live/pem/
+#===============================================
+#===============================================
+frontend 218165-lb-01
+    bind *:80
+    bind *:443 ssl crt  /etc/letsencrypt/live/www.getmiles.tech/all.pem
+    stats uri /haproxy?stats
+    http-request redirect scheme https unless { ssl_fc }
+    default_backend rare
 
-	# ACME Handler for Lets Encrypt
-    	acl url_acme_http01 path_beg /.well-known/acme-challenge/
-    	http-request use-service lua.acme-http01 if METH_GET url_acme_http01
+backend rare
+    balance roundrobin
+    server 218165-web-01  3.83.18.183:80 check
+    server 218165-web-02  34.232.76.216:80 check
 
-	mode http
-	default_backend web-backend
-
-
-backend web-rare
-	balance roundrobin
-	option forwardfor
-	server 218165-web-01 3.83.18.183:80 check
-	server 218165-web-02 34.232.76.216:80 check

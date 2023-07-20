@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Bash script that accepts one argument
+
+if [ $# -ne 1 ]
+then
+	echo"provide more than one command"
+fi
+user = "$1"
+su - "$user" -c whoami

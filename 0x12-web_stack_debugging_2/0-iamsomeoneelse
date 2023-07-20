@@ -6,4 +6,4 @@ then
 	echo"provide more than one command"
 fi
 user="$1"
-su - "$user" -c whoami
+sudo -u "$user" whoami

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# task 1 replica
+# task 0 replica
 
 sudo -u "$1" whoami

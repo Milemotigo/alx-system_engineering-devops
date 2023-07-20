@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # a script that gives nginx previlages
-
-chmod 777 /etc/nginx/nginx.conf
-
+chmod 644 /etc/nginx/nginx.conf
 sed -i "s/80/8080/g" /etc/nginx/sites-available/default
 sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
-
 pkill -9 apache
 sudo -u nginx service nginx start

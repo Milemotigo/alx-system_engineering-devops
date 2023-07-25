@@ -7,10 +7,11 @@ import csv
 import requests
 import sys
 
+
 def export_to_csv(uid):
     '''
     export to csv
-    ''' 
+    '''
     url = "https://jsonplaceholder.typicode.com/users/{}".format(uid)
     user = requests.get(url, verify=False).json()
     url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(

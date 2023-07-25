@@ -26,5 +26,6 @@ def export_to_csv(uid):
 
 
 if __name__ == '__main__':
+    '''main function'''
     uid = int(sys.argv[1])
     export_to_csv(uid)

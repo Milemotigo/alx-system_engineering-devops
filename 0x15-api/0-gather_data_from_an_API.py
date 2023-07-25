@@ -32,6 +32,6 @@ def resp(uid):
 
 
 if __name__ == '__main__':
-    '''main function'''
+    '''Main function'''
     uid = int(sys.argv[1])
     resp(uid)

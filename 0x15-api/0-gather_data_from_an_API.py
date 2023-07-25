@@ -24,7 +24,8 @@ def resp(uid):
             if task['completed']:
                 taskcom += 1
                 task_completed.append(task['title'])
-    emp_details = 'Employee {} is done with tasks({}/{})'.format(employee, taskcom, todo)
+    emp_details = 'Employee {} is done with tasks({}/{})'.format
+    (employee, taskcom, todo)
     print(emp_details)
     for title in task_completed:
         print("\t {}".format(title))

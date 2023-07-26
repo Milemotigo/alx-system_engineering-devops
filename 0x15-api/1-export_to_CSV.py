@@ -1,27 +1,34 @@
 #!/usr/bin/python3
-"""Get API values and save into a csv format"""
-
+'''Python script to export data in the CSV format.'''
 import csv
 import requests
-from sys import argv
+import sys
 
-if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/todos"
-    url2 = "https://jsonplaceholder.typicode.com/users"
 
-    id = int(argv[1])
+def import_csv(uid):
+    '''import function'''
+    task_url = "https://jsonplaceholder.typicode.com/todos"
+    usr_url = "https://jsonplaceholder.typicode.com/users"
 
-    todos = requests.get(url).json()
-    users = requests.get(url2).json()
+    todos = requests.get(task_url).json()
+    users = requests.get(usr_url).json()
 
-    name = ""
+    name = None
+
     for user in users:
-        if user['id'] == id:
-            name = user['username']
+        if user['id'] == uid:
+            empl = user['username']
+    filename = "{}.csv".format(uid)
+    with open(filename, "w", newline="") as csvfile:
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        for t in todos:
+            if t['userId'] == uid:
+                completed = t.get("completed")
+                title = t.get("title")
+                writer.writerow([uid, empl, completed, title])
 
-        with open("{}.csv".format(id), "w", newline="") as csvfile:
-            writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-            for todo in todos:
-                if todo['userId'] == id:
-                    writer.writerow(
-                        [id, name, todo.get("completed"), todo.get("title")])
+
+if __name__ == '__main__':
+    '''main'''
+    uid = int(sys.argv[1])
+    import_csv(uid)

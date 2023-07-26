@@ -13,16 +13,18 @@ def import_csv(uid):
     users = requests.get(usr_url).json()
 
     name = None
+
     for user in users:
         if user['id'] == uid:
-            employee = user['username']
+            empl = user['username']
 
     with open("{}.csv".format(uid), "w", newline="") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        for todo in todos:
-            if todo['userId'] == uid:
-                writer.writerow([uid, employee,
-                                 todo.get("completed"), todo.get("title")])
+        for t in todos:
+            if t['userId'] == uid:
+                completed = t.get("completed")
+                title = t.get("title")
+                writer.writerow([uid, empl, completed, title])
 
 
 if __name__ == '__main__':

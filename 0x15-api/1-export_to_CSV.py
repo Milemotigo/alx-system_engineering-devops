@@ -6,6 +6,7 @@ import sys
 
 
 def import_csv(uid):
+    '''import function'''
     task_url = "https://jsonplaceholder.typicode.com/todos"
     usr_url = "https://jsonplaceholder.typicode.com/users"
 

@@ -6,7 +6,7 @@ import requests
 
 
 def top_ten(subreddit):
-    """top ten hotest posts"""
+    """top ten hotest post"""
     headers = {'User-Agent': 'FApi'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     response = requests.get(url, headers=headers)

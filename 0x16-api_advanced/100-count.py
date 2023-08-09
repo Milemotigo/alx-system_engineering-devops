@@ -1,10 +1,14 @@
 #!/usr/bin/python3
-'''counts'''
+'''recursive function that queries
+the Reddit API, parses the title of
+all hot articles, and prints
+'''
 import requests
 
 
 def count_words(subreddit, word_list, after=None, word_count={}):
-    '''cont words'''
+    '''recursive function that queries the Reddit API,
+    parses the title of all hot articles, and prints'''
     headers = {'User-Agent': 'Agent'}
     base_url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     params = {"limit": 100, "after": after}

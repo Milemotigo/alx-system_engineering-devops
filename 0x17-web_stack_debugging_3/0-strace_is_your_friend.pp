@@ -6,6 +6,6 @@ exec { 'restart-apache':
 
 file { '/etc/apache2/apache2.conf':
   ensure => file,
-  source => 'puppet:///modules/<your_module_name>/apache2.conf'
+  source => 'puppet:///modules/0-strace_is_your_friend.pp/apache2.conf'
   notify => Exec['restart-apache'],
 }

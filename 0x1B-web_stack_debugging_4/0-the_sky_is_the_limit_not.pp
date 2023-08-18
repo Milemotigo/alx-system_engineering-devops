@@ -1,5 +1,11 @@
-# Sky is the limit, let's bring that limit higher
-exec { 'fix--for-nginx':
-  command => "sed -i 's/worker_processes 4;/worker_processes 7;/g' /etc/nginx/nginx.conf; sudo service nginx restart",
-  path    => $::path
+# Increases the ulimit of nginx default to accommodate a high volume of requests
+exec {'replace':
+  provider => shell,
+  command  => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/" /etc/default/nginx',
+  before   => Exec['restart'],
+}
+
+exec {'restart':
+  provider => shell,
+  command  => 'sudo service nginx restart',
 }
